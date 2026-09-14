@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--
+  这是我的第一个网页。
+
+  结构很简单，就三层：
+    <head>  - 给浏览器看的信息（标题、编码、引用的样式文件）
+    <body>  - 给人看的内容
+    <script> - 让页面动起来的脚本
+
+  一个网页 = HTML（骨架）+ CSS（外观）+ JS（动作）
+-->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <!-- 这行决定手机上看不会缩成一团，做移动端适配必须写 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>钟奕生 · 个人主页</title>
+
+  <!-- 引用外部样式文件：外观全部写在 style.css 里，HTML 只管内容 -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ===== 顶部区域 ===== -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="avatar">钟</div>
+      <h1>钟奕生</h1>
+      <p class="tagline">深圳大学 · 通信工程 · 2024 级</p>
+      <p class="sub">正在找实习，方向：射频工程师 / 硬件工程师</p>
+
+      <!-- 只放邮箱，不放手机号：公开网页会被爬虫抓，手机号留到简历里给 HR -->
+      <div class="contact">
+        <a href="mailto:1536560936@qq.com">✉️ 1536560936@qq.com</a>
+      </div>
+
+      <!-- 这个按钮的点击事件在 script.js 里 -->
+      <button id="themeBtn" class="btn">切换主题</button>
+    </div>
+  </header>
+
+  <!-- ===== 关于我 ===== -->
+  <section class="card">
+    <h2>关于我</h2>
+    <p>
+      通信工程专业在读。目前的计划是把学到的信号处理知识，
+      变成一个个能跑起来、能打开链接就看到的项目。
+    </p>
+    <p>
+      这个页面是我用 AI 辅助做的第一个作品，也是我所有项目的入口。
+      下面的项目列表会随着我做的东西慢慢变长。
+    </p>
+  </section>
+
+  <!-- ===== 技能标签 ===== -->
+  <section class="card">
+    <h2>技能</h2>
+    <div class="tags">
+      <span class="tag">C++</span>
+      <span class="tag">HTML / CSS</span>
+      <span class="tag">JavaScript（学习中）</span>
+      <span class="tag">信号与系统</span>
+      <span class="tag">CET-4</span>
+    </div>
+  </section>
+
+  <!-- ===== 项目列表 ===== -->
+  <section class="card">
+    <h2>我的项目</h2>
+
+    <div class="project">
+      <h3>个人主页 <span class="badge">进行中</span></h3>
+      <p>就是这个页面。第一个从零做出来的、有网址的网站。</p>
+    </div>
+
+    <div class="project">
+      <h3>待添加</h3>
+      <p>每完成一个项目，我会把它加到这里。</p>
+    </div>
+  </section>
+
+  <!-- ===== 页脚 ===== -->
+  <footer>
+    <p id="footerText">© 2026 钟奕生</p>
+  </footer>
+
+  <!-- 脚本放最后：等页面内容都加载完再执行，这是惯例 -->
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+/* ============================================
+   style.css - 页面的外观
+   HTML 是骨架，CSS 是皮肤。这里改颜色、间距、大小。
+   ============================================ */
+
+/* :root 定义的是"全局变量"，下面用 var(--xxx) 引用。
+   JS 切换主题时，就是改这几个变量的值 —— 一处改，全站变。 */
+:root {
+  --bg:        #0f1220;   /* 背景 */
+  --bg-card:   #1a1e33;   /* 卡片背景 */
+  --text:      #e8eaf6;   /* 主文字 */
+  --text-dim:  #9aa0c0;   /* 次要文字 */
+  --accent:    #4fd1c5;   /* 点缀色（青） */
+  --accent-2:  #7c8cff;   /* 点缀色（紫） */
+  --border:    #2a2f4a;   /* 边框 */
+}
+
+/* 浅色主题：JS 会给 body 加 .light 类，届时用这组值覆盖 */
+body.light {
+  --bg:        #f5f6fa;
+  --bg-card:   #ffffff;
+  --text:      #1a1e33;
+  --text-dim:  #6b7194;
+  --accent:    #0f9b8e;
+  --accent-2:  #5b6bf5;
+  --border:    #e0e3f0;
+}
+
+/* * 是"所有元素"。box-sizing: border-box 让 padding 不会把盒子撑大，
+   这是现代 CSS 的第一行标配，能省掉无数布局问题。 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Microsoft YaHei", -apple-system, "PingFang SC", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+
+  /* 让主题切换有过渡动画，而不是硬切 */
+  transition: background .3s, color .3s;
+}
+
+/* ===== 顶部区域 ===== */
+.hero {
+  background: linear-gradient(135deg, var(--accent-2), var(--accent));
+  padding: 70px 20px 60px;
+  text-align: center;
+}
+
+.hero-inner {
+  max-width: 700px;
+  margin: 0 auto;   /* 左右 auto = 水平居中 */
+}
+
+/* 圆形头像，用首字母代替图片（省得找图） */
+.avatar {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 18px;
+  background: rgba(255, 255, 255, .22);
+  border: 2px solid rgba(255, 255, 255, .5);
+  border-radius: 50%;          /* 50% = 圆 */
+  display: flex;
+  align-items: center;         /* 垂直居中 */
+  justify-content: center;     /* 水平居中 */
+  font-size: 38px;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* 渐变背景上文字全部用白色，保证对比度 */
+.hero h1 {
+  font-size: 34px;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.hero .tagline {
+  color: rgba(255, 255, 255, .95);
+  font-size: 17px;
+}
+
+.hero .sub {
+  color: rgba(255, 255, 255, .8);
+  font-size: 15px;
+  margin-top: 4px;
+}
+
+.contact {
+  margin-top: 18px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;              /* 屏幕窄时自动换行，手机上不会挤爆 */
+  color: #fff;
+  font-size: 14px;
+}
+
+/* 邮箱链接：默认是蓝色带下划线，在渐变背景上不好看，这里改成白色虚线下划线 */
+.contact a {
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(255, 255, 255, .6);
+  padding-bottom: 2px;
+}
+
+.contact a:hover {
+  border-bottom-style: solid;   /* 鼠标移上去变成实线 */
+}
+
+.btn {
+  margin-top: 22px;
+  padding: 10px 26px;
+  border: 2px solid #fff;
+  border-radius: 24px;
+  background: transparent;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;              /* 鼠标移上去变成小手 */
+  transition: all .2s;
+}
+
+.btn:hover {
+  background: #fff;
+  color: var(--accent-2);
+}
+
+/* ===== 卡片区块 ===== */
+.card {
+  max-width: 700px;
+  margin: 28px auto;
+  padding: 28px 30px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: background .3s, border-color .3s;
+}
+
+.card h2 {
+  font-size: 21px;
+  margin-bottom: 14px;
+  color: var(--accent);
+}
+
+.card p {
+  color: var(--text-dim);
+  margin-bottom: 10px;
+}
+
+/* ===== 技能标签 ===== */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag {
+  padding: 6px 15px;
+  background: rgba(124, 140, 255, .14);
+  border: 1px solid var(--accent-2);
+  border-radius: 16px;
+  font-size: 14px;
+  color: var(--text);
+}
+
+/* ===== 项目条目 ===== */
+.project {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+/* 最后一项不要下划线 */
+.project:last-child {
+  border-bottom: none;
+}
+
+.project h3 {
+  font-size: 17px;
+  margin-bottom: 6px;
+}
+
+.project p {
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.badge {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 10px;
+  background: var(--accent);
+  color: #0f1220;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* ===== 页脚 ===== */
+footer {
+  text-align: center;
+  padding: 30px 20px 40px;
+  color: var(--text-dim);
+  font-size: 14px;
+}
+
+/* ===== 手机适配 =====
+   @media 意思是"当屏幕宽度小于 600px 时，应用下面的样式"。
+   这叫响应式，是让网页在手机上也好看的标准做法。 */
+@media (max-width: 600px) {
+  .hero h1 { font-size: 27px; }
+  .card { margin: 20px 14px; padding: 22px 20px; }
+  .contact { gap: 10px; font-size: 13px; }
+}
