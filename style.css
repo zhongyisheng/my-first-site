@@ -112,6 +112,17 @@ body {
   border-bottom-style: solid;   /* 鼠标移上去变成实线 */
 }
 
+/* 项目卡片里的标题链接：颜色跟着卡片走，不要浏览器默认的蓝色下划线 */
+.project h3 a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dashed currentColor;
+}
+
+.project h3 a:hover {
+  border-bottom-style: solid;
+}
+
 .btn {
   margin-top: 22px;
   padding: 10px 26px;
