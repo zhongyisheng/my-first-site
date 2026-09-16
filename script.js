@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // ---- 2. 页脚自动显示当前年份 ----
   var footer = document.getElementById('footerText');
   var year = new Date().getFullYear();   // 拿到 2026 这样的数字
-  footer.textContent = '© ' + year + ' 钟奕生 · 由 AI 辅助构建';
+  footer.textContent = '© ' + year + ' 钟奕生 · 深圳大学通信工程';
 
 
   // ---- 3. 打招呼（顺便证明 JS 真的在跑）----

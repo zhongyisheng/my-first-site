@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <!--
-  这是我的第一个网页。
+  钟奕生的作品集首页
 
-  结构很简单，就三层：
-    <head>  - 给浏览器看的信息（标题、编码、引用的样式文件）
+  这个页面的定位：给 HR / 面试官看的第一眼。
+  所以每个项目都必须能"一眼看出是什么"：
+  截图 + 一句话说明 + 用了什么技术 + 两个按钮（打开看看 / 看代码）。
+
+  三层结构还是老三样：
+    <head>  - 给浏览器看的信息
     <body>  - 给人看的内容
     <script> - 让页面动起来的脚本
-
-  一个网页 = HTML（骨架）+ CSS（外观）+ JS（动作）
 -->
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <!-- 这行决定手机上看不会缩成一团，做移动端适配必须写 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>钟奕生 · 个人主页</title>
+  <title>钟奕生 · 作品集</title>
 
-  <!-- 引用外部样式文件：外观全部写在 style.css 里，HTML 只管内容 -->
+  <!-- 外观全部写在 style.css 里，HTML 只管内容 -->
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -28,11 +29,12 @@
       <div class="avatar">钟</div>
       <h1>钟奕生</h1>
       <p class="tagline">深圳大学 · 通信工程 · 2024 级</p>
-      <p class="sub">正在找实习，方向：射频工程师 / 硬件工程师</p>
+      <p class="sub">求职方向：射频工程师 / 硬件工程师</p>
 
-      <!-- 只放邮箱，不放手机号：公开网页会被爬虫抓，手机号留到简历里给 HR -->
+      <!-- 只放邮箱和 GitHub，不放手机号：公开网页会被爬虫抓 -->
       <div class="contact">
-        <a href="mailto:1536560936@qq.com">✉️ 1536560936@qq.com</a>
+        <a href="mailto:1536560936@qq.com">1536560936@qq.com</a>
+        <a href="https://github.com/zhongyisheng" target="_blank" rel="noopener">github.com/zhongyisheng</a>
       </div>
 
       <!-- 这个按钮的点击事件在 script.js 里 -->
@@ -44,54 +46,168 @@
   <section class="card">
     <h2>关于我</h2>
     <p>
-      通信工程专业在读。目前的计划是把学到的信号处理知识，
-      变成一个个能跑起来、能打开链接就看到的项目。
+      通信工程专业在读，方向是射频与硬件。习惯把学到的东西做成能跑起来、能打开链接看到的东西 ——
+      下面每一个项目都有在线地址，可以随时点开。
     </p>
     <p>
-      这个页面是我用 AI 辅助做的第一个作品，也是我所有项目的入口。
-      下面的项目列表会随着我做的东西慢慢变长。
+      我的做事方式是：自己拆需求、定方案、验结果，把 AI 当工具用，而不是当答案。
+      这套流程让我能独立把一个想法推到上线 —— 从写页面、接 AI 接口、接云端数据库，
+      到给仓库配上自动检查。
     </p>
   </section>
 
   <!-- ===== 技能标签 ===== -->
   <section class="card">
     <h2>技能</h2>
-    <div class="tags">
-      <span class="tag">C++</span>
-      <span class="tag">HTML / CSS</span>
-      <span class="tag">JavaScript（学习中）</span>
-      <span class="tag">信号与系统</span>
-      <span class="tag">CET-4</span>
+
+    <div class="skill-group">
+      <p class="skill-label">编程与工具</p>
+      <div class="tags">
+        <span class="tag">C++</span>
+        <span class="tag">HTML / CSS</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">Git / GitHub</span>
+        <span class="tag">GitHub Actions</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <p class="skill-label">专业</p>
+      <div class="tags">
+        <span class="tag">信号与系统</span>
+        <span class="tag">CET-4</span>
+      </div>
     </div>
   </section>
 
-  <!-- ===== 项目列表 ===== -->
-  <section class="card">
+  <!-- ===== 项目列表 =====
+       从"一行文字"改成"一张卡片"。
+       顺序是按"对看的人多有分量"排的，不是按做的先后。 -->
+  <section class="card card-wide">
     <h2>我的项目</h2>
 
-    <div class="project">
-      <h3>个人主页 <span class="badge">已上线</span></h3>
-      <p>就是这个页面。第一个从零做出来的、有网址的网站。</p>
-    </div>
+    <div class="works">
 
-    <div class="project">
-      <h3><a href="https://zhongyisheng.github.io/todo-list/">待办清单</a> <span class="badge">已上线</span></h3>
-      <p>能增、删、改、打勾，数据存在浏览器里，刷新不丢。</p>
-    </div>
+      <!-- 项目 1：留言板（唯一有后端的） -->
+      <article class="work">
+        <a class="shot" href="https://message-board-74016.app.workbuddy.host/" target="_blank" rel="noopener">
+          <img src="assets/message-board.png" alt="留言板页面截图" loading="lazy">
+        </a>
+        <div class="work-body">
+          <h3>留言板 <span class="badge">有后端</span></h3>
+          <p>
+            能注册登录、发留言，数据存在云端，谁打开看到的都是同一份。
+            删除权限做在数据库那一层 —— 不是页面上把按钮藏起来，是别人的留言真的删不掉。
+          </p>
+          <div class="stack">
+            <span>REST API</span>
+            <span>PostgreSQL</span>
+            <span>用户认证</span>
+            <span>行级权限 RLS</span>
+          </div>
+          <div class="links">
+            <a class="go" href="https://message-board-74016.app.workbuddy.host/" target="_blank" rel="noopener">打开看看</a>
+            <a class="src" href="https://github.com/zhongyisheng/message-board" target="_blank" rel="noopener">看代码</a>
+          </div>
+        </div>
+      </article>
 
-    <div class="project">
-      <h3><a href="https://zhongyisheng.github.io/error-translator/">报错翻译官</a> <span class="badge">已上线</span></h3>
-      <p>把看不懂的报错整段粘进去，用人话说明哪里坏了、为什么会这样、怎么改。没有后端，网页直接调 AI 接口；接口地址和 Key 由使用者在页面上自己填，代码里不存任何密钥。</p>
-    </div>
+      <!-- 项目 2：报错翻译官 -->
+      <article class="work">
+        <a class="shot" href="https://zhongyisheng.github.io/error-translator/" target="_blank" rel="noopener">
+          <img src="assets/error-translator.png" alt="报错翻译官页面截图" loading="lazy">
+        </a>
+        <div class="work-body">
+          <h3>报错翻译官 <span class="badge">调 AI</span></h3>
+          <p>
+            把看不懂的报错整段粘进去，用人话说明哪里坏了、为什么会这样、怎么改。
+            网页直接调 AI 接口，地址和 Key 由使用者在页面上自己填，代码里不存任何密钥。
+            答案是边写边显示出来的，翻过的报错会留在历史记录里。
+          </p>
+          <div class="stack">
+            <span>JavaScript</span>
+            <span>调用 AI 接口</span>
+            <span>流式响应</span>
+            <span>本地存储</span>
+          </div>
+          <div class="links">
+            <a class="go" href="https://zhongyisheng.github.io/error-translator/" target="_blank" rel="noopener">打开看看</a>
+            <a class="src" href="https://github.com/zhongyisheng/error-translator" target="_blank" rel="noopener">看代码</a>
+          </div>
+        </div>
+      </article>
 
-    <div class="project">
-      <h3><a href="https://zhongyisheng.github.io/snake-game/">贪吃蛇</a> <span class="badge">已上线</span></h3>
-      <p>方向键控制的小游戏。整块画布每秒重画八遍，从"一个会动的方块"一步步长成能计分、会判输赢、能重开的完整游戏。桌面浏览器打开玩，手机上玩不了（靠键盘）。</p>
-    </div>
+      <!-- 项目 3：贪吃蛇 -->
+      <article class="work">
+        <a class="shot" href="https://zhongyisheng.github.io/snake-game/" target="_blank" rel="noopener">
+          <img src="assets/snake-game.png" alt="贪吃蛇游戏截图" loading="lazy">
+        </a>
+        <div class="work-body">
+          <h3>贪吃蛇 <span class="badge">小游戏</span></h3>
+          <p>
+            用 Canvas 从零写的网页小游戏：有计分、碰撞判定、能重新开始。
+            整块画布每秒重画八遍，从"一个会动的方块"一步步长成完整的游戏。
+            （用键盘玩，手机上玩不了。）
+          </p>
+          <div class="stack">
+            <span>JavaScript</span>
+            <span>Canvas</span>
+            <span>游戏循环</span>
+            <span>状态管理</span>
+          </div>
+          <div class="links">
+            <a class="go" href="https://zhongyisheng.github.io/snake-game/" target="_blank" rel="noopener">玩一局</a>
+            <a class="src" href="https://github.com/zhongyisheng/snake-game" target="_blank" rel="noopener">看代码</a>
+          </div>
+        </div>
+      </article>
 
-    <div class="project">
-      <h3><a href="https://message-board-74016.app.workbuddy.host/">留言板</a> <span class="badge">已上线</span></h3>
-      <p>第一个有后端的项目。前面那些作品的数据要么写死在代码里、要么只存在自己浏览器里，换个设备打开就没了；这个的数据存在云端，谁打开看到的都是同一份。能注册登录、发留言，并且只能删自己的 —— 权限不是在页面上"藏按钮"，而是数据库那层真的拦得住。</p>
+      <!-- 项目 4：待办清单 -->
+      <article class="work">
+        <a class="shot" href="https://zhongyisheng.github.io/todo-list/" target="_blank" rel="noopener">
+          <img src="assets/todo-list.png" alt="待办清单页面截图" loading="lazy">
+        </a>
+        <div class="work-body">
+          <h3>待办清单</h3>
+          <p>
+            能增、能删、能改、能打勾，数据存在浏览器本地，刷新不丢。
+            先有数据、再按数据重画页面 —— 这是后面所有项目都在用的同一套做法。
+          </p>
+          <div class="stack">
+            <span>HTML / CSS</span>
+            <span>JavaScript</span>
+            <span>本地存储</span>
+          </div>
+          <div class="links">
+            <a class="go" href="https://zhongyisheng.github.io/todo-list/" target="_blank" rel="noopener">打开看看</a>
+            <a class="src" href="https://github.com/zhongyisheng/todo-list" target="_blank" rel="noopener">看代码</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 项目 5：自动化检查（没有独立网页，成果是那张全绿的运行记录） -->
+      <article class="work">
+        <a class="shot" href="https://github.com/zhongyisheng/message-board/actions" target="_blank" rel="noopener">
+          <img src="assets/ci-actions.png" alt="GitHub Actions 自动检查运行记录截图" loading="lazy">
+        </a>
+        <div class="work-body">
+          <h3>自动化检查 <span class="badge">CI</span></h3>
+          <p>
+            给留言板仓库配的自动检查：每次推代码，GitHub 会借一台干净机器，
+            跑 52 项自检和密钥扫描，通过才给绿勾。这一步不需要人记得去做。
+          </p>
+          <div class="stack">
+            <span>GitHub Actions</span>
+            <span>YAML</span>
+            <span>持续集成 CI</span>
+          </div>
+          <div class="links">
+            <a class="go" href="https://github.com/zhongyisheng/message-board/actions" target="_blank" rel="noopener">看运行记录</a>
+            <a class="src" href="https://github.com/zhongyisheng/message-board/blob/main/.github/workflows/check.yml" target="_blank" rel="noopener">看配置</a>
+          </div>
+        </div>
+      </article>
+
     </div>
   </section>
 
@@ -100,7 +216,7 @@
     <p id="footerText">© 2026 钟奕生</p>
   </footer>
 
-  <!-- 脚本放最后：等页面内容都加载完再执行，这是惯例 -->
+  <!-- 脚本放最后：等页面内容都加载完再执行 -->
   <script src="script.js"></script>
 </body>
 </html>

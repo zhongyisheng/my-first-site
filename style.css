@@ -141,8 +141,9 @@ body {
 }
 
 /* ===== 卡片区块 ===== */
+/* 宽度从 700 放到 1000：作品截图放得下，700 太窄了 */
 .card {
-  max-width: 700px;
+  max-width: 1000px;
   margin: 28px auto;
   padding: 28px 30px;
   background: var(--bg-card);
@@ -160,6 +161,7 @@ body {
 .card p {
   color: var(--text-dim);
   margin-bottom: 10px;
+  max-width: 60ch;   /* 一行太长读起来要扭头，限一下 */
 }
 
 /* ===== 技能标签 ===== */
@@ -211,6 +213,122 @@ body {
   vertical-align: middle;
 }
 
+/* ===== 技能分组 ===== */
+.skill-group { margin-bottom: 18px; }
+.skill-group:last-child { margin-bottom: 0; }
+
+.skill-label {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+
+/* ===== 作品卡片 =====
+   auto-fit + minmax：一行放得下几张就放几张，放不下自动掉下去。
+   窄屏上会变成一列，不用单独写手机样式。 */
+.works {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 20px;
+}
+
+.work {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;              /* 让截图跟着圆角一起被裁 */
+  transition: border-color .2s, transform .2s;
+}
+
+/* 鼠标移上去：边框变青 + 轻轻抬起 —— 让人知道"这张卡片是能点的" */
+.work:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* 截图区。line-height: 0 是为了去掉图片底部那条几像素的缝 */
+.shot {
+  display: block;
+  line-height: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.work-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;                       /* 撑满剩余高度，配合下面的 margin-top: auto */
+  padding: 16px 18px 18px;
+}
+
+.work-body h3 {
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+
+.work-body p {
+  font-size: 14px;
+  color: var(--text-dim);
+  margin-bottom: 14px;
+  max-width: none;               /* 卡片内部不用限宽 */
+}
+
+/* 技术栈小标签 */
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.stack span {
+  font-size: 12px;
+  padding: 3px 9px;
+  border-radius: 6px;
+  background: rgba(124, 140, 255, .12);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+}
+
+/* 两个按钮。margin-top: auto 把它们顶到底部，几张卡片就自动对齐了 */
+.links {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.links a {
+  font-size: 14px;
+  padding: 7px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: opacity .2s, color .2s, border-color .2s;
+}
+
+.links .go {
+  background: var(--accent);
+  color: #0f1220;
+}
+
+.links .go:hover { opacity: .85; }
+
+.links .src {
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+}
+
+.links .src:hover {
+  color: var(--text);
+  border-color: var(--text-dim);
+}
+
 /* ===== 页脚 ===== */
 footer {
   text-align: center;
@@ -219,11 +337,17 @@ footer {
   font-size: 14px;
 }
 
-/* ===== 手机适配 =====
-   @media 意思是"当屏幕宽度小于 600px 时，应用下面的样式"。
+/* ===== 屏幕适配 =====
+   @media 意思是"当屏幕宽度小于某个值时，应用下面的样式"。
    这叫响应式，是让网页在手机上也好看的标准做法。 */
+@media (max-width: 800px) {
+  /* 一行放不下两张卡片了，改成一张一行 */
+  .works { grid-template-columns: 1fr; }
+}
+
 @media (max-width: 600px) {
   .hero h1 { font-size: 27px; }
   .card { margin: 20px 14px; padding: 22px 20px; }
   .contact { gap: 10px; font-size: 13px; }
+  .work-body { padding: 14px 15px 16px; }
 }
